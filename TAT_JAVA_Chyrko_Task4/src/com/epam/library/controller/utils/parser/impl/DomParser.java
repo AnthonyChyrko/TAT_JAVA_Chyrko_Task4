@@ -4,8 +4,10 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.epam.library.controller.CommandProvider;
 import com.epam.library.controller.command.Command;
 
+import org.apache.log4j.Logger;
 import org.apache.xerces.parsers.DOMParser;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -14,7 +16,7 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 public class DomParser extends AbstractParser {
-
+	private final static Logger logger = Logger.getLogger(CommandProvider.class);
 	@Override
 	public Map<String, Command> getCommands(String xmlPath) {
 		Map<String, Command> mapComm = new HashMap<String, Command>();
@@ -23,8 +25,7 @@ public class DomParser extends AbstractParser {
 		try {
 			parser.parse(xmlPath);
 		} catch (SAXException | IOException e) {
-			System.out.println("Не можем распарсить?");
-			e.printStackTrace();
+			logger.error("Can't parse XML!",e);
 		}
 		Document document = parser.getDocument();
 		Element root = document.getDocumentElement();
@@ -36,7 +37,6 @@ public class DomParser extends AbstractParser {
 			String path = el.getTextContent().trim();
 			addCommand(mapComm, key.toUpperCase(), path);
 		}
-		
 		return mapComm;
 	}
 

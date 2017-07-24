@@ -1,26 +1,21 @@
 package com.epam.library.controller.utils.parser.handler;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.SAXParseException;
 import org.xml.sax.helpers.DefaultHandler;
 
-import com.epam.library.controller.command.Command;
-import com.epam.library.controller.utils.parser.ParameterTagName;
-
 public class SaxHandler extends DefaultHandler{
-	private List<String> commandList = new ArrayList<String>();
-	
-	private Command command;
+	private Map<String, String> commandMap = new HashMap<String, String>();
+	private String commandKey;
+	private String commandPath;
 	
 	private StringBuilder text;
-	private StringBuilder commandRequest;
-	public List<String> getCommandList(){
-		return commandList;
+	public Map<String, String> getCommandMap(){
+		return commandMap;
 	}
 	
 	public void startDocument() throws SAXException {
@@ -32,10 +27,10 @@ public class SaxHandler extends DefaultHandler{
 	
 	public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
 		text = new StringBuilder();
+
 		if (qName.equals("command")){
-			commandRequest = new StringBuilder();
-			commandRequest = commandRequest.append(qName.concat("=").concat(attributes.getValue("name")).concat("&"));			
-		}
+			commandKey = attributes.getValue("name");			
+		}		
 	}
 	
 	public void characters(char[] buffer, int start, int length) {
@@ -43,14 +38,12 @@ public class SaxHandler extends DefaultHandler{
 	}
 	
 	public void endElement(String uri, String localName, String qName) throws SAXException {
-		System.out.println(uri+" - "+qName);
-			ParameterTagName paramTagName = ParameterTagName.valueOf(qName.toUpperCase());
-			if(paramTagName.equals(ParameterTagName.COMMAND)){
-				commandList.add(""+commandRequest);
-				commandRequest = null;
-			}else if(!paramTagName.equals(ParameterTagName.COMMANDS)){
-				commandRequest.append(qName.concat("=").concat(""+text).concat("&"));
-			}
+
+		if(qName.equals("path")){
+			commandPath = ""+text;
+		}else{
+			commandMap.put(commandKey, commandPath);
+		}	
 	}
 	
 	public void warning(SAXParseException exception) {

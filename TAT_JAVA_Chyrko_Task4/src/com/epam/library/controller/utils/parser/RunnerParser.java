@@ -5,6 +5,8 @@ import java.io.IOException;
 import org.xml.sax.SAXException;
 
 import com.epam.library.controller.utils.parser.impl.DomParser;
+import com.epam.library.controller.utils.parser.impl.SAXParser;
+import com.epam.library.controller.utils.parser.impl.StAXParser;
 
 public class RunnerParser {
 	 static String name = "Himalaya";
@@ -15,7 +17,9 @@ public class RunnerParser {
 	  }
 	public static void main(String[] args) throws SAXException, IOException {
 //		new SAXparser().parseXML();
-		new DomParser().getCommands(PATH_TO_XML);
+//		new DomParser().getCommands(PATH_TO_XML);
+//		new SAXParser().getCommands(PATH_TO_XML);
+		new StAXParser().getCommands(PATH_TO_XML);
 ////		System.out.println( getMountain().getMountain().getMountain()  );
 ////		System.out.println( RunnerParser.name);
 //		A aa = new A();

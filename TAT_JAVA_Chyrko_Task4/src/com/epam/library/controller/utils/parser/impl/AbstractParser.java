@@ -26,7 +26,6 @@ public abstract class AbstractParser implements Parser{
 		} catch (InstantiationException | IllegalAccessException e) {
 			logger.error("Can't create command!",e);
 		}
-		
 		commandMap.put(commandKey, command);
 	}
 }

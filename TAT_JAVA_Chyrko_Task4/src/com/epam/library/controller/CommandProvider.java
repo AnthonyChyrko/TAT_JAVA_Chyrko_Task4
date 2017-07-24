@@ -6,23 +6,6 @@ import java.util.Map;
 import org.apache.log4j.Logger;
 
 import com.epam.library.controller.command.Command;
-import com.epam.library.controller.command.CommandName;
-import com.epam.library.controller.command.impl.AddBook;
-import com.epam.library.controller.command.impl.AddSubscription;
-import com.epam.library.controller.command.impl.BanUser;
-import com.epam.library.controller.command.impl.BookAvailability;
-import com.epam.library.controller.command.impl.EditAccess;
-import com.epam.library.controller.command.impl.EditBook;
-import com.epam.library.controller.command.impl.EditLogin;
-import com.epam.library.controller.command.impl.EditOrderBooksList;
-import com.epam.library.controller.command.impl.EditPassword;
-import com.epam.library.controller.command.impl.Register;
-import com.epam.library.controller.command.impl.RemoveSubscription;
-import com.epam.library.controller.command.impl.ShowAllBooks;
-import com.epam.library.controller.command.impl.SignIn;
-import com.epam.library.controller.command.impl.SignOut;
-import com.epam.library.controller.command.impl.WrongRequest;
-import com.epam.library.controller.session.SessionStorage;
 import com.epam.library.controller.utils.parser.Parser;
 import com.epam.library.controller.utils.parser.factory.ParserFactory;
 
@@ -34,7 +17,10 @@ public class CommandProvider {
 
 	CommandProvider() {
 		ParserFactory factory = ParserFactory.getInstance();
-		Parser parser = factory.getDomParser();
+		//TODO SWITCH PARSERS YOU CAN HERE!
+//		Parser parser = factory.getDomParser();
+//		Parser parser = factory.getSaxParser();
+		Parser parser = factory.getStaxParser();
 		repository = parser.getCommands(PATH_TO_XML);
 	}
 	
