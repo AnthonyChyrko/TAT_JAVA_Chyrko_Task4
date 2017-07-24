@@ -16,7 +16,7 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 public class DomParser extends AbstractParser {
-	private final static Logger logger = Logger.getLogger(CommandProvider.class);
+	private final static Logger logger = Logger.getLogger(DomParser.class);
 	@Override
 	public Map<String, Command> getCommands(String xmlPath) {
 		Map<String, Command> mapComm = new HashMap<String, Command>();

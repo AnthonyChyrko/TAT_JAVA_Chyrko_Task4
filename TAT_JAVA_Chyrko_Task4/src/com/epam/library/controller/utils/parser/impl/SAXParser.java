@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.log4j.Logger;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 import org.xml.sax.XMLReader;
@@ -14,6 +15,7 @@ import com.epam.library.controller.command.Command;
 import com.epam.library.controller.utils.parser.handler.SaxHandler;
 
 public class SAXParser extends AbstractParser{
+	private final static Logger logger = Logger.getLogger(SAXParser.class);
 	SaxHandler handler;
 	XMLReader reader;
 	@Override
@@ -38,11 +40,9 @@ public class SAXParser extends AbstractParser{
 			}
 			
 		} catch (SAXException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			logger.error("SAXException!",e);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			logger.error("IOException!",e);
 		}
 		return mapComm;
 	}

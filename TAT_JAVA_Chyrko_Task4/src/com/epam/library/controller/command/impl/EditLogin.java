@@ -19,14 +19,12 @@ public class EditLogin implements Command {
 		String[] param = request.split("&");
 		String login = uc.recognizeParam(UserParam.LOGIN, param);		
 		String response = null;
-		System.out.println(login);
 		
 		ServiceFactory serviceFactory = ServiceFactory.getInstance();
 		ClientService clientService = serviceFactory.getClientService();
 		try {			
 			clientService.editLogin(login);			
 			response = "Login is changed!";
-//			logger.info(response);
 		} catch (ServiceException e) {
 			response = e.getMessage();
 			logger.error(e.getMessage());

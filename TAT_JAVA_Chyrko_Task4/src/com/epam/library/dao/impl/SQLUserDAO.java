@@ -60,7 +60,7 @@ public class SQLUserDAO implements UserDAO {
 							ps = connection.prepareStatement(GET_USER);							
 							ps.setInt(1, rs.getInt(1));			
 							user = setUserParam(user, ps.executeQuery());
-							System.out.println(Thread.currentThread().hashCode()+" - "+user.toString()+" FROM SIGN_IN");
+							logger.debug(Thread.currentThread().hashCode()+" - "+user.toString()+" FROM SIGN_IN");
 							
 						}else{			
 							logger.warn("User already SignIn!");

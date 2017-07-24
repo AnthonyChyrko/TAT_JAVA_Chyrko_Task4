@@ -27,7 +27,7 @@ public class SignIn implements Command {
 			clientService.signIn(login, password);
 			response = "Welcom!";
 			logger.info(response+" "+login);
-			System.out.println(session.getUserFromSession(Thread.currentThread().hashCode()).toString() + " FROM SIGN_IN_BEFORE_CONTROLLERR");
+//			System.out.println(session.getUserFromSession(Thread.currentThread().hashCode()).toString() + " FROM SIGN_IN_BEFORE_CONTROLLERR");
 		} catch (ServiceException e) {
 			logger.error(e.getMessage());
 			response = e.getMessage();

@@ -11,13 +11,17 @@ import javax.xml.stream.XMLStreamConstants;
 import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamReader;
 
+import org.apache.log4j.Logger;
+
 import com.epam.library.controller.command.Command;
 
 public class StAXParser extends AbstractParser {
-
+	private final static Logger logger = Logger.getLogger(StAXParser.class);
 	@Override
 	public Map<String, Command> getCommands(String xmlPath) {
 		Map<String, Command> mapComm = new HashMap<String, Command>();
+		String commandKey = null;
+		String commandPath = null;
 		
 		XMLInputFactory inputFactory = XMLInputFactory.newInstance();		
 		try {
@@ -26,29 +30,23 @@ public class StAXParser extends AbstractParser {
 			
 			while(reader.hasNext()){
 				int type = reader.next();
-				if(type == XMLStreamConstants.START_ELEMENT && reader.getLocalName().equals("command")){
-					System.out.println("What is here? - "+type + " - "+reader.getAttributeValue(null, "name"));
+				if(type == XMLStreamConstants.START_ELEMENT && reader.getLocalName().equals("command")){					
+					commandKey = reader.getAttributeValue(null, "name");
 				}
 				if(type == XMLStreamConstants.CHARACTERS ){
-					String commandPath = reader.getText().trim();					
-					if (commandPath.isEmpty()) {
+					commandPath = reader.getText().trim();					
+					if (commandPath.isEmpty() || commandPath==null) {
 						continue;
 					}
-					System.out.println(commandPath);
-										
-				}
+//					System.out.println(commandKey +" - "+ commandPath);
+					addCommand(mapComm, commandKey.toUpperCase(), commandPath);
+				}			
 			}
 			
-			
-			
-			
 		} catch (FileNotFoundException | XMLStreamException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		
-		return null;
+			logger.error("Can't parse XML!",e);
+		}		
+		return mapComm;
 	}
 
 }
