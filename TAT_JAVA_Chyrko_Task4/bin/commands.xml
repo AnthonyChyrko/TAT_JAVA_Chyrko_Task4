@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<commands xmlns ="http://www.library.epam.com/commands"
+            xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance"
+            xsi:schemaLocation="http://www.library.epam.com/commands commands.xsd">
+
+	<command id = "1" name="Add_Book">
+		<title>SuperBookFree</title>
+		<author>Somebody</author>
+		<year>2017</year>
+		<genre>fantastic</genre>
+		<quantity>15</quantity>
+		<availability>Y</availability>			
+	</command>
+	
+	<command id = "2" name="Add_Subscription">				
+	</command>
+	
+	<command id = "3" name="Ban_User">		
+		<login>Petr</login>
+		<sign_In>BAN</sign_In>		
+	</command>
+	
+	<command id = "4" name="Book_Availability">
+		<book_Id>4</book_Id>
+		<title>SuperBook</title>
+		<availability>Y</availability>
+		<author>Chyrko</author>
+		<year>2015</year>
+		<quantity>15</quantity>
+		<genre>fantastik</genre>
+	</command>
+	
+	<command id = "5" name="Edit_Access">
+		<login>Petr</login>
+		<access>U</access>
+	</command>
+	
+	<command id = "6" name="Edit_Book">
+		<book_Id>4</book_Id>
+		<title>SuperBook</title>
+		<author>Chyrko</author>
+		<genre>fantastik</genre>
+		<quantity>15</quantity>
+	</command>
+	
+	<command id = "7" name="Edit_Login">
+		<login>Petr</login>
+	</command>
+	
+	<command id = "8" name="Edit_Order_Books_List">
+		<action_Command>Add_book</action_Command>
+		<book_Id>4</book_Id>
+	</command>
+	
+	<command id = "9" name="Edit_Password">
+		<password>newPassword123</password>
+	</command>
+	
+	<command id = "10" name="Register">
+		<login>Semas</login>
+		<password>asasdsdfDFEWRTDFASDFASDFSAFSD</password>		
+	</command>
+	
+	<command id = "11" name="Remove_Subscription">
+		<user_Id>3</user_Id>
+		<book_Id>6</book_Id>
+	</command>
+	
+	<command id = "12" name="Show_All_Books">		
+	</command>
+	
+	<command id = "13" name="Sign_In">
+		<login>Anton</login>
+		<access>SA</access>
+	</command>
+	
+	<command id = "14" name="Sign_Out">
+		<login>Anton</login>
+	</command>
+	
+	<command id = "15" name="Wrong_Request">	
+	</command>
+
+</commands>

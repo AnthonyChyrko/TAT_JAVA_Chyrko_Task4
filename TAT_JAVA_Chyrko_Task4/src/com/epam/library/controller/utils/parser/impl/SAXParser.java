@@ -5,7 +5,7 @@ import java.util.Map;
 import com.epam.library.controller.command.Command;
 import com.epam.library.controller.utils.parser.Parser;
 
-public class SAXParser implements Parser {
+public class SAXParser extends AbstractParser{
 
 	@Override
 	public Map<String, Command> getCommands(String xmlPath) {

@@ -1,13 +1,13 @@
 package com.epam.library.controller.utils.parser.factory;
 
 import com.epam.library.controller.utils.parser.Parser;
-import com.epam.library.controller.utils.parser.impl.DOMParser;
+import com.epam.library.controller.utils.parser.impl.DomParser;
 import com.epam.library.controller.utils.parser.impl.SAXParser;
 import com.epam.library.controller.utils.parser.impl.StAXParser;
 
 public final class ParserFactory {
     private static ParserFactory instance;
-    private final Parser domParser = new DOMParser();
+    private final Parser domParser = new DomParser();
     private final Parser saxParser = new SAXParser();
     private final Parser staxParser = new StAXParser();
 

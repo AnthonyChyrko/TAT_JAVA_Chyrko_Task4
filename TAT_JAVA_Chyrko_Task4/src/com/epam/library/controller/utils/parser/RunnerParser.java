@@ -4,14 +4,18 @@ import java.io.IOException;
 
 import org.xml.sax.SAXException;
 
+import com.epam.library.controller.utils.parser.impl.DomParser;
+
 public class RunnerParser {
 	 static String name = "Himalaya";
+	 private static final String PATH_TO_XML = ".\\src\\commandList.xml";
 	  static RunnerParser getMountain() {
 	    System.out.println("Getting Name ");
 	    return null;
 	  }
 	public static void main(String[] args) throws SAXException, IOException {
-		new SAXparser().parseXML();
+//		new SAXparser().parseXML();
+		new DomParser().getCommands(PATH_TO_XML);
 ////		System.out.println( getMountain().getMountain().getMountain()  );
 ////		System.out.println( RunnerParser.name);
 //		A aa = new A();

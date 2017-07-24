@@ -18,7 +18,7 @@ public class Controller implements LifeCircle {
 		String commandName;
 		Command executionCommand;		
 		commandName = uc.recognizeParam(UserParam.COMMAND, request.split(ControllerConstant.DELIMITER));
-		executionCommand = provider.getCommand(commandName);		
+		executionCommand = provider.getCommand(commandName.toUpperCase());		
 		String response;	
 		
 		response = executionCommand.execute(request);

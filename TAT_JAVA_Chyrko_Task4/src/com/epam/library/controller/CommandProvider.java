@@ -24,33 +24,25 @@ import com.epam.library.controller.command.impl.SignOut;
 import com.epam.library.controller.command.impl.WrongRequest;
 import com.epam.library.controller.session.SessionStorage;
 import com.epam.library.controller.utils.parser.Parser;
+import com.epam.library.controller.utils.parser.factory.ParserFactory;
 
 public class CommandProvider {
 	private final static Logger logger = Logger.getLogger(CommandProvider.class);
 	
-	private final Map<String, Command> repository = new HashMap<>();
+	private Map<String, Command> repository = new HashMap<>();
 	private static final String PATH_TO_XML = ".\\src\\commandList.xml";
 
 	CommandProvider() {
 		ParserFactory factory = ParserFactory.getInstance();
-		Parser parser = factory.getDOMParser();
+		Parser parser = factory.getDomParser();
 		repository = parser.getCommands(PATH_TO_XML);
 	}
 	
 	Command getCommand(String name){
-		CommandName commandName = null;
-		Command command = null;
-		try{
-			commandName = CommandName.valueOf(name.toUpperCase());	
-				command = repository.get(commandName);
-			
-			logger.info(""+commandName);
-		}catch (IllegalArgumentException | NullPointerException e) {
-			
-			logger.info(""+commandName);
-			command = repository.get(CommandName.WRONG_REQUEST);			
-		}
-		
+		Command command = repository.get(name);
+		if(command == null){
+			command = repository.get("Wrong_Request");
+		}		
 		return command;		
 	}
 }
