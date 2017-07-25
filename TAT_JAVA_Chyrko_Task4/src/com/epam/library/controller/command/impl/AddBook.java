@@ -4,6 +4,7 @@ import org.apache.log4j.Logger;
 
 import com.epam.library.bean.Book;
 import com.epam.library.controller.command.Command;
+import com.epam.library.controller.util.BookParam;
 import com.epam.library.controller.util.UtilController;
 import com.epam.library.service.LibraryService;
 import com.epam.library.service.exception.ServiceException;
@@ -15,8 +16,10 @@ public class AddBook implements Command {
 	Book book;
 	@Override
 	public String execute(String request) {
-		String[] param = request.split("&");		
-		book = uc.prepareBook(param);
+		String[] param = request.split("&");	
+		String bookPath = uc.recognizeParam(BookParam.BOOK_PATH, param);
+		book = uc.getBookFromXML(bookPath);
+//		book = uc.prepareBook(param);
 		String response = null;
 		logger.info(book.toString());		
 		ServiceFactory serviceFactory = ServiceFactory.getInstance();

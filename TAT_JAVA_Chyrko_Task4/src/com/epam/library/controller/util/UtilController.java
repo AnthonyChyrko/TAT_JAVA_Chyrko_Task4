@@ -1,6 +1,19 @@
 package com.epam.library.controller.util;
 
+import java.io.File;
+import java.io.IOException;
+
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Unmarshaller;
+import javax.xml.transform.Source;
+import javax.xml.transform.stream.StreamSource;
+import javax.xml.validation.Schema;
+import javax.xml.validation.SchemaFactory;
+import javax.xml.validation.Validator;
+
 import org.apache.log4j.Logger;
+import org.xml.sax.SAXException;
 
 import com.epam.library.bean.Book;
 import com.epam.library.bean.OrderBooksList;
@@ -72,4 +85,43 @@ public class UtilController {
 
 		return orderBooksList;
 	}
+	
+	public Book getBookFromXML(String pathXML){
+		if(isValidXML(pathXML)){
+			File file = new File(pathXML);
+			JAXBContext jaxbContext;
+			try {
+				jaxbContext = JAXBContext.newInstance(Book.class);
+				Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
+				Book book = (Book) jaxbUnmarshaller.unmarshal(file);		
+				return book;
+			} catch (JAXBException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}	
+		}
+		return null;
+	}
+	
+	public boolean isValidXML(String pathXML){		
+		SchemaFactory factory = SchemaFactory.newInstance("http://www.w3.org/2001/XMLSchema");
+		File schemaLocation = new File(".\\src\\test\\java\\resources\\book.xsd");
+		try {
+			Schema schema = factory.newSchema(schemaLocation);
+			Validator validator = schema.newValidator();		
+			Source source = new StreamSource(pathXML);		
+			validator.validate(source);		
+			System.out.println(" is valid.");
+			return true;
+		} catch (SAXException ex) {
+			System.out.println(" is not valid because ");
+			System.out.println(ex.getMessage());
+			return false;
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return false;
+	}
+	
 }

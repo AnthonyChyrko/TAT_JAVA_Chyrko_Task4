@@ -24,9 +24,9 @@ import com.epam.library.dao.pool.exception.ConnectionPoolException;
 public class SQLBookDAO implements BookDAO{
 	private final static Logger logger = Logger.getLogger(SQLBookDAO.class);
 	
-	private static final String GET_BOOK_INFO = "SELECT b_id, b_name, a_name, g_name , b_year, b_quantity, b_available, a_id, g_id FROM library_ver2.books JOIN `m2m_books_authors` USING(`b_id`) JOIN `authors` USING(`a_id`) JOIN `m2m_books_genres` USING(`b_id`) JOIN `genres` USING(`g_id`) WHERE b_id = ?;";
-	private static final String GET_BOOKS_INFO = "SELECT b_id, b_name, a_name, g_name , b_year, b_quantity, b_available, a_id, g_id FROM library_ver2.books JOIN `m2m_books_authors` USING(`b_id`) JOIN `authors` USING(`a_id`) JOIN `m2m_books_genres` USING(`b_id`) JOIN `genres` USING(`g_id`);";
-	private static final String GET_ALL_SUBSCRIPTIONS = "SELECT sb_id, u_id, b_id, sb_start , sb_finish, sb_is_active FROM library_ver2.subscriptions;";		
+	private static final String GET_BOOK_INFO = "SELECT b_id, b_name, a_name, g_name , b_year, b_quantity, b_available, a_id, g_id FROM books JOIN `m2m_books_authors` USING(`b_id`) JOIN `authors` USING(`a_id`) JOIN `m2m_books_genres` USING(`b_id`) JOIN `genres` USING(`g_id`) WHERE b_id = ?;";
+	private static final String GET_BOOKS_INFO = "SELECT b_id, b_name, a_name, g_name , b_year, b_quantity, b_available, a_id, g_id FROM books JOIN `m2m_books_authors` USING(`b_id`) JOIN `authors` USING(`a_id`) JOIN `m2m_books_genres` USING(`b_id`) JOIN `genres` USING(`g_id`);";
+	private static final String GET_ALL_SUBSCRIPTIONS = "SELECT sb_id, u_id, b_id, sb_start , sb_finish, sb_is_active FROM subscriptions;";		
 	private static final String GET_BOOKS = "SELECT `b_id`, `b_name`, `b_year`, `b_quantity`, `b_available`  FROM `books`;";
 		
 	private static final String EDIT_BOOK_TITLE = "UPDATE books SET b_name=? WHERE b_id = ?;";

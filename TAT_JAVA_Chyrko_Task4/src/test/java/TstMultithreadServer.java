@@ -21,8 +21,9 @@ import com.epam.library.dao.pool.ConnectionPool;
 import com.epam.library.dao.pool.exception.ConnectionPoolException;
 import com.epam.library.server.MultithreadServer;
 
-import test.java.resources.Encodings;
+import test.java.resources.Encoding;
 import test.java.resources.PathCommand;
+import test.java.util.TstTool;
 
 public class TstMultithreadServer {
 	private List<String> pathFillTestDB = new ArrayList<>();
@@ -52,6 +53,36 @@ public class TstMultithreadServer {
 					assertEquals(actualResponceList.get(i), expectedResponceList.get(i));	
 				}			  
 		  }  
+		
+		@Test(dataProvider = "scenario3")
+		  public void scenario3(List<String> requestsList, List<String> expectedResponceList) {	
+				TstTool.createBookXML();
+				String[] requestsArray = new String[requestsList.size()];
+				requestsArray = requestsList.toArray(requestsArray);
+				List<String> actualResponceList = multithreadServer.executeUserCommands(requestsArray);
+				for (int i = 0; i < actualResponceList.size(); i++) {
+					assertEquals(actualResponceList.get(i), expectedResponceList.get(i));	
+				}			  
+		  }  
+		@DataProvider
+		public Object[][] scenario3() {
+			  List<String> requestsList = Arrays.asList(
+					  "command=sign_in&login=Sema&password=passWord3",
+					  "command=add_book&book_path=.\\src\\test\\java\\resources\\book.xml",					  
+					  "command=sign_out&login=Sema"
+					  );
+			  
+			  List<String> expectedResponceList = Arrays.asList(
+					  "Welcom!",
+					  "New Book added!",					  
+					  "Good Bye!"
+					  );	  
+			  
+		  return new Object[][] {
+		    new Object[] { requestsList, expectedResponceList },     
+		  };
+		}  
+		
 		@DataProvider
 		public Object[][] scenario2() {
 			  List<String> requestsList = Arrays.asList(
@@ -104,7 +135,7 @@ public class TstMultithreadServer {
 		  Connection connection = connectionPool.getConnection();		  
 		  for (int i = 0; i < pathFillTestDB.size(); i++) {
 			  
-			  sb = Encodings.readFileWithCharset(pathFillTestDB.get(i), PathCommand.CHARSET);					
+			  sb = Encoding.readFileWithCharset(pathFillTestDB.get(i), PathCommand.CHARSET);					
 			  ps = connection.prepareStatement(""+sb);
 			  ps.executeUpdate();				
 		  }
@@ -123,7 +154,7 @@ public class TstMultithreadServer {
 		  connectionPool = ConnectionPool.getInstance();
 		  connection = connectionPool.getConnection();		
 		  for (int i = 0; i < pathCleanTestDB.size(); i++) {			  
-			  sb = Encodings.readFileWithCharset(pathCleanTestDB.get(i), PathCommand.CHARSET);		
+			  sb = Encoding.readFileWithCharset(pathCleanTestDB.get(i), PathCommand.CHARSET);		
 			  ps = connection.prepareStatement(""+sb);
 			  ps.executeUpdate();			
 		  }

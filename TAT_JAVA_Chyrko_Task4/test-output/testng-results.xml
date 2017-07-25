@@ -1,33 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results skipped="0" failed="0" total="2" passed="2">
+<testng-results skipped="0" failed="0" ignored="0" total="3" passed="3">
   <reporter-output>
   </reporter-output>
-  <suite name="Default suite" duration-ms="733" started-at="2017-07-24T19:59:26Z" finished-at="2017-07-24T19:59:26Z">
+  <suite name="Default suite" duration-ms="3267" started-at="2017-07-25T09:54:54Z" finished-at="2017-07-25T09:54:58Z">
     <groups>
     </groups>
-    <test name="scenario1" duration-ms="733" started-at="2017-07-24T19:59:26Z" finished-at="2017-07-24T19:59:26Z">
+    <test name="scenario1" duration-ms="3267" started-at="2017-07-25T09:54:54Z" finished-at="2017-07-25T09:54:58Z">
       <class name="test.java.TstMultithreadServer">
-        <test-method status="PASS" signature="beforeTest()[pri:0, instance:test.java.TstMultithreadServer@1e397ed7]" name="beforeTest" is-config="true" duration-ms="489" started-at="2017-07-24T22:59:26Z" finished-at="2017-07-24T22:59:26Z">
+        <test-method status="PASS" signature="beforeTest()[pri:0, instance:test.java.TstMultithreadServer@4f7d0008]" name="beforeTest" is-config="true" duration-ms="1248" started-at="2017-07-25T12:54:54Z" finished-at="2017-07-25T12:54:56Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- beforeTest -->
-        <test-method status="PASS" signature="scenario1(java.util.List, java.util.List)[pri:0, instance:test.java.TstMultithreadServer@1e397ed7]" name="scenario1" duration-ms="33" started-at="2017-07-24T22:59:26Z" data-provider="scenario1" finished-at="2017-07-24T22:59:26Z">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[[command=sign_in&login=Anton&password=passWord4, command=ban_user&login=Petr&signIn=BAN, command=edit_access&login=Sema&access=U, command=sign_out&login=Anton]]]>
-              </value>
-            </param>
-            <param index="1">
-              <value>
-                <![CDATA[[Welcom!, Profile is changed!, Access is changed!, Good Bye!]]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- scenario1 -->
-        <test-method status="PASS" signature="scenario2(java.util.List, java.util.List)[pri:0, instance:test.java.TstMultithreadServer@1e397ed7]" name="scenario2" duration-ms="33" started-at="2017-07-24T22:59:26Z" data-provider="scenario2" finished-at="2017-07-24T22:59:26Z">
+        <test-method status="PASS" signature="scenario2(java.util.List, java.util.List)[pri:0, instance:test.java.TstMultithreadServer@4f7d0008]" name="scenario2" duration-ms="166" started-at="2017-07-25T12:54:56Z" data-provider="scenario2" finished-at="2017-07-25T12:54:56Z">
           <params>
             <param index="0">
               <value>
@@ -43,7 +27,39 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- scenario2 -->
-        <test-method status="PASS" signature="afterTest()[pri:0, instance:test.java.TstMultithreadServer@1e397ed7]" name="afterTest" is-config="true" duration-ms="190" started-at="2017-07-24T22:59:26Z" finished-at="2017-07-24T22:59:26Z">
+        <test-method status="PASS" signature="scenario1(java.util.List, java.util.List)[pri:0, instance:test.java.TstMultithreadServer@4f7d0008]" name="scenario1" duration-ms="348" started-at="2017-07-25T12:54:56Z" data-provider="scenario1" finished-at="2017-07-25T12:54:56Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[command=sign_in&login=Anton&password=passWord4, command=ban_user&login=Petr&signIn=BAN, command=edit_access&login=Sema&access=U, command=sign_out&login=Anton]]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[[Welcom!, Profile is changed!, Access is changed!, Good Bye!]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- scenario1 -->
+        <test-method status="PASS" signature="scenario3(java.util.List, java.util.List)[pri:0, instance:test.java.TstMultithreadServer@4f7d0008]" name="scenario3" duration-ms="1150" started-at="2017-07-25T12:54:56Z" data-provider="scenario3" finished-at="2017-07-25T12:54:57Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[command=sign_in&login=Sema&password=passWord3, command=add_book&book_path=.\src\test\java\resources\book.xml, command=sign_out&login=Sema]]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[[Welcom!, New Book added!, Good Bye!]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- scenario3 -->
+        <test-method status="PASS" signature="afterTest()[pri:0, instance:test.java.TstMultithreadServer@4f7d0008]" name="afterTest" is-config="true" duration-ms="829" started-at="2017-07-25T12:54:57Z" finished-at="2017-07-25T12:54:58Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- afterTest -->

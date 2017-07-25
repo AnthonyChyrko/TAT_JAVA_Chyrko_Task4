@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+	<xs:element name="book">
+		<xs:complexType >
+			<xs:sequence>
+				<xs:element name="id" type="xs:string" />
+				<xs:element name="title" type="TitleType" />
+				<xs:element name="author" type="TitleType" />
+				<xs:element name="genre" type="TitleType" />
+				<xs:element name="year" type="xs:nonNegativeInteger" />
+				<xs:element name="quantity" type="xs:nonNegativeInteger" />
+				<xs:element name="availability" type="AvailabilityType" />
+			</xs:sequence>
+		</xs:complexType>	
+	</xs:element>
+	<xs:simpleType name="TitleType">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="[ -_a-zA-Z]+"/>
+        </xs:restriction>
+    </xs:simpleType>
+    
+    <xs:simpleType name="AvailabilityType">
+        <xs:restriction base="xs:string">
+        	<xs:enumeration value="Y"></xs:enumeration>
+        	<xs:enumeration value="N"></xs:enumeration>
+        </xs:restriction>
+    </xs:simpleType>
+	
+</xs:schema>

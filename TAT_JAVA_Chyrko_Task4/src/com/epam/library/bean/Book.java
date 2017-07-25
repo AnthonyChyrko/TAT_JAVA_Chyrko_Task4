@@ -2,17 +2,33 @@ package com.epam.library.bean;
 
 import java.io.Serializable;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlType;
+
+@XmlRootElement
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(name = "Book", propOrder = { "id", "title", "author", "genre", "year", "quantity", "availability" })
+
 public class Book implements Serializable{
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = -6716148788697044107L;
+	@XmlElement(required = true)
 	private long id;
+	@XmlElement(required = true)
 	private String title;	
+	@XmlElement(required = true)
 	private String author;
+	@XmlElement(required = true)
 	private String genre;
+	@XmlElement(required = true)
 	private int year;
+	@XmlElement(required = true)
 	private int quantity;
+	@XmlElement(required = true)
 	private String availability;
 	
 	public Book(){}
